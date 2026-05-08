@@ -1,3 +1,4 @@
+
 import { InvoiceData, BUSINESS_DETAILS } from "@/lib/types";
 import Image from "next/image";
 import { format } from "date-fns";
@@ -11,19 +12,19 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
   const taxAmount = (subtotal * (data.taxRate || 0)) / 100;
   const grandTotal = subtotal + taxAmount;
 
-  // Ensure date is valid
   const invoiceDate = data.invoiceDate ? new Date(data.invoiceDate) : new Date();
 
   return (
     <div className="invoice-document bg-white min-h-[11in] w-[8.5in] mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden">
       {/* 1. Organization Details - CENTER ALIGNED */}
       <div className="flex flex-col items-center text-center mb-16">
-        <div className="relative w-20 h-20 mb-4 grayscale">
+        <div className="relative w-24 h-24 mb-4 grayscale">
           <Image 
             src={BUSINESS_DETAILS.logoUrl} 
             alt={BUSINESS_DETAILS.name} 
             fill 
             className="object-contain"
+            priority
           />
         </div>
         <h1 className="text-3xl font-headline font-bold text-primary mb-2 uppercase tracking-wider">{BUSINESS_DETAILS.name}</h1>
@@ -53,7 +54,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         </div>
       </div>
 
-      {/* 3. Line Items Table - HORIZONTAL FOR BOTH MOBILE/DESKTOP */}
+      {/* 3. Line Items Table - ALWAYS HORIZONTAL */}
       <div className="flex-grow">
         <table className="w-full text-left mb-8 border-collapse">
           <thead>
@@ -69,8 +70,8 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
               <tr key={item.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F5F0E8]/30'}>
                 <td className="py-4 px-3 font-medium">{item.description}</td>
                 <td className="py-4 px-3 text-center">{item.quantity}</td>
-                <td className="py-4 px-3 text-right">${item.unitPrice.toFixed(2)}</td>
-                <td className="py-4 px-3 text-right font-semibold">${(item.quantity * item.unitPrice).toFixed(2)}</td>
+                <td className="py-4 px-3 text-right">GH₵ {item.unitPrice.toFixed(2)}</td>
+                <td className="py-4 px-3 text-right font-semibold">GH₵ {(item.quantity * item.unitPrice).toFixed(2)}</td>
               </tr>
             ))}
             {data.items.length === 0 && (
@@ -87,17 +88,17 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         <div className="w-64 space-y-2">
           <div className="flex justify-between text-sm">
             <span className="opacity-60 font-semibold uppercase tracking-wider text-xs">Subtotal:</span>
-            <span>${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+            <span>GH₵ {subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
           </div>
           {data.taxRate > 0 && (
             <div className="flex justify-between text-sm">
               <span className="opacity-60 font-semibold uppercase tracking-wider text-xs">Tax ({data.taxRate}%):</span>
-              <span>${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+              <span>GH₵ {taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
           )}
           <div className="flex justify-between items-center pt-2 border-t border-secondary">
             <span className="font-bold text-lg uppercase tracking-wider">Total:</span>
-            <span className="font-bold text-2xl text-primary">${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+            <span className="font-bold text-2xl text-primary">GH₵ {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -46,6 +47,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-20 px-4 sm:px-0">
+      {/* SECTION 1: INVOICE DETAILS */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary">
           <CardTitle className="font-headline text-2xl text-primary">Invoice Information</CardTitle>
@@ -72,71 +74,32 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest opacity-60">Client Details</h3>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="clientName">Client Name</Label>
-                  <Input 
-                    id="clientName"
-                    placeholder="Acme Corp"
-                    value={data.client.name}
-                    onChange={e => setData({...data, client: {...data.client, name: e.target.value}})}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="clientEmail">Client Email</Label>
-                  <Input 
-                    id="clientEmail"
-                    type="email"
-                    placeholder="billing@acme.com"
-                    value={data.client.email}
-                    onChange={e => setData({...data, client: {...data.client, email: e.target.value}})}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="clientAddress">Client Address</Label>
-                  <Textarea 
-                    id="clientAddress"
-                    placeholder="Street, City, Country"
-                    rows={3}
-                    value={data.client.address}
-                    onChange={e => setData({...data, client: {...data.client, address: e.target.value}})}
-                  />
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="taxRate">Tax Rate (%)</Label>
+              <Input 
+                id="taxRate"
+                type="number"
+                placeholder="0"
+                value={data.taxRate || ''}
+                onChange={e => setData({...data, taxRate: parseFloat(e.target.value) || 0})}
+              />
             </div>
-
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest opacity-60">Preferences</h3>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="taxRate">Tax Rate (%)</Label>
-                  <Input 
-                    id="taxRate"
-                    type="number"
-                    placeholder="0"
-                    value={data.taxRate || ''}
-                    onChange={e => setData({...data, taxRate: parseFloat(e.target.value) || 0})}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="notes">Notes / Payment Terms</Label>
-                  <Textarea 
-                    id="notes"
-                    placeholder="Payment terms, bank details, etc."
-                    rows={5}
-                    value={data.notes}
-                    onChange={e => setData({...data, notes: e.target.value})}
-                  />
-                </div>
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="notes">Notes / Payment Terms</Label>
+              <Textarea 
+                id="notes"
+                placeholder="Payment terms, bank details, etc."
+                rows={3}
+                value={data.notes}
+                onChange={e => setData({...data, notes: e.target.value})}
+              />
             </div>
           </div>
         </CardContent>
       </Card>
 
+      {/* SECTION 2: LINE ITEMS - VERTICAL ON MOBILE, HORIZONTAL ON DESKTOP */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary flex flex-row items-center justify-between">
           <CardTitle className="font-headline text-2xl text-primary">Line Items</CardTitle>
@@ -146,7 +109,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
         </CardHeader>
         <CardContent className="pt-6">
           <div className="space-y-4">
-            {/* Table Header - Desktop Only */}
+            {/* Header - Desktop Only */}
             <div className="hidden md:grid md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 pb-3 border-b border-secondary text-xs uppercase tracking-widest font-bold opacity-60 px-2">
               <div>Description</div>
               <div className="text-center">Quantity</div>
@@ -155,7 +118,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
               <div></div>
             </div>
 
-            {/* Item Rows - VERTICAL FOR MOBILE EDITING, HORIZONTAL FOR DESKTOP */}
             <div className="divide-y divide-secondary/30">
               {data.items.map((item) => (
                 <div key={item.id} className="py-6 md:py-3 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 items-end md:items-center group px-2">
@@ -186,7 +148,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                   <div className="space-y-2 md:space-y-0">
                     <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Unit Price</Label>
                     <div className="relative">
-                      <span className="absolute left-3 md:left-2 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
+                      <span className="absolute left-3 md:left-2 top-1/2 -translate-y-1/2 text-muted-foreground">₵</span>
                       <Input 
                         type="number"
                         min="0"
@@ -198,15 +160,15 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                     </div>
                   </div>
 
-                  {/* Row Total */}
+                  {/* Total */}
                   <div className="flex justify-between md:block items-center pt-2 md:pt-0">
                     <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Total</Label>
                     <div className="text-right font-semibold">
-                      ${(item.quantity * item.unitPrice).toFixed(2)}
+                      ₵ {(item.quantity * item.unitPrice).toFixed(2)}
                     </div>
                   </div>
 
-                  {/* Remove Button */}
+                  {/* Remove */}
                   <div className="flex justify-end pt-2 md:pt-0">
                     <Button 
                       variant="ghost" 
@@ -219,30 +181,58 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                   </div>
                 </div>
               ))}
-              {data.items.length === 0 && (
-                <div className="py-12 text-center text-muted-foreground italic">
-                  No items added yet. Click "Add Item" to begin.
-                </div>
-              )}
             </div>
           </div>
 
-          {/* Totals Summary */}
           <div className="mt-8 flex flex-col items-end border-t border-secondary pt-6 space-y-2">
             <div className="flex justify-between w-full md:w-72 text-sm px-2">
               <span className="opacity-60 uppercase tracking-widest text-xs font-bold">Subtotal:</span>
-              <span>${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+              <span>GH₵ {subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
-            {data.taxRate > 0 && (
-              <div className="flex justify-between w-full md:w-72 text-sm px-2">
-                <span className="opacity-60 uppercase tracking-widest text-xs font-bold">Tax ({data.taxRate}%):</span>
-                <span>${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
-              </div>
-            )}
             <div className="flex justify-between w-full md:w-72 text-lg font-bold text-primary pt-2 px-2 border-t border-secondary mt-2">
               <span className="uppercase tracking-widest">Grand Total:</span>
-              <span>${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+              <span>GH₵ {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* SECTION 3: CLIENT DETAILS (LAST) */}
+      <Card className="border-secondary shadow-sm">
+        <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary">
+          <CardTitle className="font-headline text-2xl text-primary">Client Details</CardTitle>
+        </CardHeader>
+        <CardContent className="pt-6 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="clientName">Client Name</Label>
+              <Input 
+                id="clientName"
+                placeholder="Client/Company Name"
+                value={data.client.name}
+                onChange={e => setData({...data, client: {...data.client, name: e.target.value}})}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="clientEmail">Client Email</Label>
+              <Input 
+                id="clientEmail"
+                type="email"
+                placeholder="billing@client.com"
+                value={data.client.email}
+                onChange={e => setData({...data, client: {...data.client, email: e.target.value}})}
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="clientAddress">Client Address</Label>
+            <Textarea 
+              id="clientAddress"
+              placeholder="Full Address"
+              rows={3}
+              value={data.client.address}
+              onChange={e => setData({...data, client: {...data.client, address: e.target.value}})}
+            />
           </div>
         </CardContent>
       </Card>

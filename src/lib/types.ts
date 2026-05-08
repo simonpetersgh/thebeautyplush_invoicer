@@ -28,5 +28,5 @@ export const BUSINESS_DETAILS = {
   phone: "(555) 000-1111",
   email: "hello@invoiceforge.com",
   website: "www.invoiceforge.com",
-  logoUrl: "https://picsum.photos/seed/forge/200/200",
+  logoUrl: "/logo.png", // Provision for logo in public folder
 };
