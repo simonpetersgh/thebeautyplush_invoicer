@@ -16,7 +16,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
 
   return (
     <div className="invoice-document bg-white min-h-[11in] w-[8.5in] mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden">
-      {/* Organization Details - CENTER ALIGNED */}
+      {/* 1. Organization Details - CENTER ALIGNED */}
       <div className="flex flex-col items-center text-center mb-16">
         <div className="relative w-20 h-20 mb-4 grayscale">
           <Image 
@@ -33,10 +33,10 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         </div>
       </div>
 
-      {/* Invoice Info and Billed To - ALIGNED LEFT/RIGHT */}
+      {/* 2. Invoice Info (LEFT) and Billed To (RIGHT) */}
       <div className="flex justify-between items-start mb-16">
         {/* Invoice Info - LEFT ALIGNED */}
-        <div className="space-y-4">
+        <div className="text-left">
           <h2 className="text-4xl font-headline italic text-secondary opacity-50 uppercase tracking-tighter mb-4">INVOICE</h2>
           <div className="space-y-1 text-sm">
             <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60 mr-2">Invoice No:</span> {data.invoiceNumber || '---'}</p>
@@ -44,16 +44,16 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
           </div>
         </div>
 
-        {/* Bill To - RIGHT ALIGNED */}
-        <div className="text-right border-r-4 border-secondary pr-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Bill To:</h3>
+        {/* Billed To - RIGHT ALIGNED */}
+        <div className="text-right max-w-xs">
+          <h3 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Billed To</h3>
           <div className="text-lg font-semibold">{data.client.name || '---'}</div>
           <div className="text-sm opacity-75">{data.client.email}</div>
           <div className="text-sm opacity-75 whitespace-pre-line">{data.client.address}</div>
         </div>
       </div>
 
-      {/* Line Items Table */}
+      {/* 3. Line Items Table - HORIZONTAL FOR BOTH MOBILE/DESKTOP */}
       <div className="flex-grow">
         <table className="w-full text-left mb-8 border-collapse">
           <thead>
@@ -105,7 +105,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       {/* Footer */}
       <div className="grid grid-cols-2 gap-12 pt-8 border-t border-secondary/30 mt-auto">
         <div className="text-xs">
-          <h3 className="font-bold uppercase tracking-widest opacity-60 mb-2">Notes & Terms:</h3>
+          <h3 className="font-bold uppercase tracking-widest opacity-60 mb-2">Notes & Terms</h3>
           <p className="opacity-75 whitespace-pre-line">{data.notes || 'Please pay within 15 days of receiving this invoice. Thank you for your business!'}</p>
         </div>
         <div className="text-right text-[10px] uppercase tracking-widest opacity-50 flex flex-col justify-end">

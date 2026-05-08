@@ -29,8 +29,11 @@ export default function Home() {
     setState("preview");
   };
   const handleBackToEdit = () => setState("form");
+  
   const handlePrint = () => {
-    window.print();
+    if (typeof window !== "undefined") {
+      window.print();
+    }
   };
 
   return (

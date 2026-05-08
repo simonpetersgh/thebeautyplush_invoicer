@@ -155,7 +155,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
               <div></div>
             </div>
 
-            {/* Item Rows - Vertical on Mobile, Horizontal on Desktop */}
+            {/* Item Rows - VERTICAL FOR MOBILE EDITING, HORIZONTAL FOR DESKTOP */}
             <div className="divide-y divide-secondary/30">
               {data.items.map((item) => (
                 <div key={item.id} className="py-6 md:py-3 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 items-end md:items-center group px-2">
