@@ -20,7 +20,7 @@ export default function Home() {
       { id: "1", description: "Professional Services", quantity: 1, unitPrice: 0 }
     ],
     taxRate: 0,
-    notes: "",
+    notes: "Payment should be made to provided account details on agreed terms. Thank you for doing business with us.",
   });
 
   const handleGenerateClick = () => setState("form");
@@ -52,12 +52,13 @@ export default function Home() {
       {/* Landing State */}
       {state === "landing" && (
         <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-700">
-          <div className="mb-8 relative w-32 h-32 transition-all duration-500">
+          <div className="mb-8 relative w-32 h-32">
             <Image 
               src={BUSINESS_DETAILS.logoUrl} 
               alt={BUSINESS_DETAILS.name} 
               fill 
               className="object-contain"
+              data-ai-hint="beauty logo"
             />
           </div>
           <h1 className="text-5xl md:text-7xl font-headline font-bold text-primary mb-4 tracking-tight">

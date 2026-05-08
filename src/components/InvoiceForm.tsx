@@ -108,7 +108,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
         </CardHeader>
         <CardContent className="pt-6">
           <div className="space-y-4">
-            {/* Header - Desktop Only */}
             <div className="hidden md:grid md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 pb-3 border-b border-secondary text-xs uppercase tracking-widest font-bold opacity-60 px-2">
               <div>Description</div>
               <div className="text-center">Quantity</div>
@@ -120,7 +119,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
             <div className="divide-y divide-secondary/30">
               {data.items.map((item) => (
                 <div key={item.id} className="py-6 md:py-3 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 items-end md:items-center group px-2">
-                  {/* Description */}
                   <div className="space-y-2 md:space-y-0">
                     <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Description</Label>
                     <Input 
@@ -131,7 +129,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                     />
                   </div>
 
-                  {/* Quantity */}
                   <div className="space-y-2 md:space-y-0">
                     <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Quantity</Label>
                     <Input 
@@ -143,7 +140,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                     />
                   </div>
 
-                  {/* Unit Price */}
                   <div className="space-y-2 md:space-y-0">
                     <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Unit Price</Label>
                     <div className="relative">
@@ -159,7 +155,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                     </div>
                   </div>
 
-                  {/* Total */}
                   <div className="flex justify-between md:block items-center pt-2 md:pt-0">
                     <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Total</Label>
                     <div className="text-right font-semibold">
@@ -167,7 +162,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                     </div>
                   </div>
 
-                  {/* Remove */}
                   <div className="flex justify-end pt-2 md:pt-0">
                     <Button 
                       variant="ghost" 
@@ -186,17 +180,17 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
           <div className="mt-8 flex flex-col items-end border-t border-secondary pt-6 space-y-2">
             <div className="flex justify-between w-full md:w-72 text-sm px-2">
               <span className="opacity-60 uppercase tracking-widest text-xs font-bold">Subtotal:</span>
-              <span>GH₵ {subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+              <span>₵ {subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
             <div className="flex justify-between w-full md:w-72 text-lg font-bold text-primary pt-2 px-2 border-t border-secondary mt-2">
               <span className="uppercase tracking-widest">Grand Total:</span>
-              <span>GH₵ {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+              <span>₵ {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* SECTION 3: CLIENT DETAILS (LAST) */}
+      {/* SECTION 3: CLIENT DETAILS */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary">
           <CardTitle className="font-headline text-2xl text-primary">Client Details</CardTitle>
