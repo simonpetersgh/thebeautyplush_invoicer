@@ -1,3 +1,4 @@
+
 import { InvoiceData, BUSINESS_DETAILS } from "@/lib/types";
 import Image from "next/image";
 import { format } from "date-fns";

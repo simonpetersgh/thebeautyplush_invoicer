@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -58,7 +59,7 @@ export default function Home() {
               alt={BUSINESS_DETAILS.name} 
               fill 
               className="object-contain"
-              data-ai-hint="beauty logo"
+              priority
             />
           </div>
           <h1 className="text-5xl md:text-7xl font-headline font-bold text-primary mb-4 tracking-tight">
@@ -91,7 +92,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 py-8 opacity-40 text-xs tracking-widest uppercase">
-            Designed by <a href="http://www.simonpetersgh.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary transition-colors">Simon Peters</a>
+            Designed by <a href="https://www.simonpetersgh.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary transition-colors">Simon Peters</a>
           </div>
         </div>
       )}
@@ -145,7 +146,7 @@ export default function Home() {
           </div>
 
           <div className="no-print text-center py-12 opacity-40 text-xs tracking-widest uppercase">
-            Designed by <a href="http://www.simonpetersgh.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary transition-colors">Simon Peters</a>
+            Designed by <a href="https://www.simonpetersgh.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary transition-colors">Simon Peters</a>
           </div>
         </div>
       )}

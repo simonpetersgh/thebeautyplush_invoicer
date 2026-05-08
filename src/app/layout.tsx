@@ -5,6 +5,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'The Beauty Plush | Invoice Generator',
   description: 'Professional invoice generator for modern businesses.',
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({
