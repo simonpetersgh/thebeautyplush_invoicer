@@ -14,10 +14,10 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
   const invoiceDate = data.invoiceDate ? new Date(data.invoiceDate) : new Date();
 
   return (
-    <div className="invoice-document bg-white h-[11in] w-[8.5in] mx-auto p-10 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden box-border">
+    <div className="invoice-document bg-white h-[11in] w-[8.5in] mx-auto p-5 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden box-border">
       {/* 1. Organization Details - CENTER ALIGNED */}
-      <div className="flex flex-col items-center text-center mb-6">
-        <div className="relative w-14 h-14 mb-2">
+      <div className="flex flex-col items-center text-center mb-4">
+        <div className="relative w-12 h-12 mb-2">
           <Image 
             src={BUSINESS_DETAILS.logoUrl} 
             alt={BUSINESS_DETAILS.name} 
@@ -26,7 +26,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
             priority
           />
         </div>
-        <h1 className="text-xl font-headline font-bold text-primary mb-1 uppercase tracking-wider">{BUSINESS_DETAILS.name}</h1>
+        <h1 className="text-lg font-headline font-bold text-primary mb-1 uppercase tracking-wider">{BUSINESS_DETAILS.name}</h1>
         <div className="text-[10px] opacity-75 max-w-xl space-y-1">
           <p>{BUSINESS_DETAILS.address}</p>
           <p className="flex items-center justify-center gap-2">
@@ -38,10 +38,10 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       </div>
 
       {/* 2. Invoice Info (LEFT) and Billed To (RIGHT) */}
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex justify-between items-start mb-6">
         {/* Invoice Info - LEFT ALIGNED */}
         <div className="text-left">
-          <h2 className="text-2xl font-headline italic text-secondary opacity-50 uppercase tracking-tighter mb-2">INVOICE</h2>
+          <h2 className="text-xl font-headline italic text-secondary opacity-50 uppercase tracking-tighter mb-1">INVOICE</h2>
           <div className="space-y-1 text-[10px]">
             <p><span className="font-semibold uppercase text-[8px] tracking-widest opacity-60 mr-2">Invoice No:</span> {data.invoiceNumber || '---'}</p>
             <p><span className="font-semibold uppercase text-[8px] tracking-widest opacity-60 mr-2">Date:</span> {format(invoiceDate, 'MMM dd, yyyy')}</p>
@@ -58,23 +58,23 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       </div>
 
       {/* 3. Line Items Table */}
-      <div className="mb-4">
+      <div className="mb-2">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-[#F5F0E8] text-[8px] font-bold uppercase tracking-widest border-b border-secondary">
-              <th className="py-2 px-3">Description</th>
-              <th className="py-2 px-3 text-center">Qty</th>
-              <th className="py-2 px-3 text-right">Unit Price</th>
-              <th className="py-2 px-3 text-right">Total</th>
+              <th className="py-1.5 px-3">Description</th>
+              <th className="py-1.5 px-3 text-center">Qty</th>
+              <th className="py-1.5 px-3 text-right">Unit Price</th>
+              <th className="py-1.5 px-3 text-right">Total</th>
             </tr>
           </thead>
           <tbody className="text-[10px] divide-y divide-secondary/30">
             {data.items.map((item, idx) => (
               <tr key={item.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F5F0E8]/30'}>
-                <td className="py-2 px-3 font-medium">{item.description}</td>
-                <td className="py-2 px-3 text-center">{item.quantity}</td>
-                <td className="py-2 px-3 text-right">GH₵ {item.unitPrice.toFixed(2)}</td>
-                <td className="py-2 px-3 text-right font-semibold">GH₵ {(item.quantity * item.unitPrice).toFixed(2)}</td>
+                <td className="py-1.5 px-3 font-medium">{item.description}</td>
+                <td className="py-1.5 px-3 text-center">{item.quantity}</td>
+                <td className="py-1.5 px-3 text-right">GH₵ {item.unitPrice.toFixed(2)}</td>
+                <td className="py-1.5 px-3 text-right font-semibold">GH₵ {(item.quantity * item.unitPrice).toFixed(2)}</td>
               </tr>
             ))}
             {data.items.length === 0 && (
@@ -87,8 +87,8 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       </div>
 
       {/* 4. Totals Block */}
-      <div className="flex flex-col items-end gap-1 mb-6">
-        <div className="w-56 space-y-1">
+      <div className="flex flex-col items-end gap-1 mb-4">
+        <div className="w-48 space-y-0.5">
           <div className="flex justify-between text-[10px]">
             <span className="opacity-60 font-semibold uppercase tracking-wider text-[8px]">Subtotal:</span>
             <span>GH₵ {subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
@@ -107,19 +107,21 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       </div>
 
       {/* 5. Notes & Terms */}
-      <div className="mb-6">
+      <div className="mb-4">
         <h3 className="text-[8px] font-bold uppercase tracking-widest opacity-60 mb-1">Notes & Terms</h3>
         <p className="text-[9px] opacity-75 whitespace-pre-line">{data.notes || 'Please pay within 15 days of receiving this invoice. Thank you for your business!'}</p>
       </div>
 
-      {/* 6. Footer - Now follows directly below notes */}
-      <div className="grid grid-cols-2 gap-4 pt-4 border-t border-secondary/30 mt-4">
-        <div className="text-[9px]">
-          <p className="opacity-75 italic font-medium">{BUSINESS_DETAILS.tagline}</p>
-        </div>
-        <div className="text-right text-[9px] uppercase tracking-widest opacity-50 flex flex-col justify-end">
-          <p className="font-bold">{BUSINESS_DETAILS.name}</p>
-          <p>{BUSINESS_DETAILS.website}</p>
+      {/* 6. Footer - Flows directly below Notes */}
+      <div className="pt-3 border-t border-secondary/30 mt-2">
+        <div className="flex justify-between items-end">
+          <div className="text-[9px]">
+            <p className="font-bold text-primary mb-0.5">{BUSINESS_DETAILS.tagline}</p>
+          </div>
+          <div className="text-right text-[9px] uppercase tracking-widest opacity-50">
+            <p className="font-bold">{BUSINESS_DETAILS.name}</p>
+            <p>{BUSINESS_DETAILS.website}</p>
+          </div>
         </div>
       </div>
     </div>

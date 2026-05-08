@@ -32,7 +32,20 @@ export default function Home() {
   
   const handlePrint = () => {
     if (typeof window !== "undefined") {
+      const now = new Date();
+      const dd = String(now.getDate()).padStart(2, '0');
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yyyy = now.getFullYear();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const min = String(now.getMinutes()).padStart(2, '0');
+      const timeStr = `${dd}-${mm}-${yyyy}-${hh}${min}`;
+      
+      const originalTitle = document.title;
+      // This changes the suggested filename in the print/save-as-pdf dialog
+      document.title = `TheBeautyPlush_Invoice_${timeStr}`;
       window.print();
+      // Restore original title
+      document.title = originalTitle;
     }
   };
 
@@ -44,7 +57,7 @@ export default function Home() {
           <div className="mb-8 relative w-32 h-32 transition-all duration-500">
             <Image 
               src={BUSINESS_DETAILS.logoUrl} 
-              alt="Invoice Forge" 
+              alt={BUSINESS_DETAILS.name} 
               fill 
               className="object-contain"
             />
@@ -101,7 +114,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Preview State - ACTUAL PDF VIEW (NOT RESPONSIVE) */}
+      {/* Preview State */}
       {state === "preview" && (
         <div className="py-12 bg-[#F5F0E8] min-h-screen">
           <div className="no-print max-w-4xl mx-auto px-4 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between animate-in fade-in slide-in-from-top-4 duration-500">
@@ -122,7 +135,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Scroll container for fixed-width document view on mobile */}
           <div className="overflow-x-auto pb-12">
             <div className="animate-in zoom-in-95 duration-500 w-fit mx-auto px-4">
               <InvoiceDocument data={invoiceData} />
