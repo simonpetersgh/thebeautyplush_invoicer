@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 37 32% 95%; /* #F5F0E8 */
-    --foreground: 0 0% 10%; /* #1A1A1A */
+    --foreground: 0 0% { 10% }; /* #1A1A1A */
     --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
@@ -52,7 +52,7 @@
     box-shadow: none !important;
     border: none !important;
     margin: 0 !important;
-    padding: 2cm !important;
+    padding: 1cm !important;
     width: 100% !important;
   }
 }
