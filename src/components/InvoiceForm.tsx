@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -99,7 +98,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
         </CardContent>
       </Card>
 
-      {/* SECTION 2: LINE ITEMS - VERTICAL ON MOBILE, HORIZONTAL ON DESKTOP */}
+      {/* SECTION 2: LINE ITEMS */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary flex flex-row items-center justify-between">
           <CardTitle className="font-headline text-2xl text-primary">Line Items</CardTitle>
@@ -214,25 +213,14 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="clientEmail">Client Email</Label>
+              <Label htmlFor="clientAddress">Client Address</Label>
               <Input 
-                id="clientEmail"
-                type="email"
-                placeholder="billing@client.com"
-                value={data.client.email}
-                onChange={e => setData({...data, client: {...data.client, email: e.target.value}})}
+                id="clientAddress"
+                placeholder="Full Address"
+                value={data.client.address}
+                onChange={e => setData({...data, client: {...data.client, address: e.target.value}})}
               />
             </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="clientAddress">Client Address</Label>
-            <Textarea 
-              id="clientAddress"
-              placeholder="Full Address"
-              rows={3}
-              value={data.client.address}
-              onChange={e => setData({...data, client: {...data.client, address: e.target.value}})}
-            />
           </div>
         </CardContent>
       </Card>

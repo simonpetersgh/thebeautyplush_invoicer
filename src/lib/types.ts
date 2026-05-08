@@ -7,7 +7,6 @@ export interface LineItem {
 
 export interface ClientDetails {
   name: string;
-  email: string;
   address: string;
 }
 

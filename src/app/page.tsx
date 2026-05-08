@@ -15,7 +15,7 @@ export default function Home() {
   const [invoiceData, setInvoiceData] = useState<InvoiceData>({
     invoiceNumber: `INV-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
     invoiceDate: new Date().toISOString().split('T')[0],
-    client: { name: "", email: "", address: "" },
+    client: { name: "", address: "" },
     items: [
       { id: "1", description: "Professional Services", quantity: 1, unitPrice: 0 }
     ],
@@ -41,10 +41,8 @@ export default function Home() {
       const timeStr = `${dd}-${mm}-${yyyy}-${hh}${min}`;
       
       const originalTitle = document.title;
-      // This changes the suggested filename in the print/save-as-pdf dialog
       document.title = `TheBeautyPlush_Invoice_${timeStr}`;
       window.print();
-      // Restore original title
       document.title = originalTitle;
     }
   };

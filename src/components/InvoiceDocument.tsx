@@ -52,8 +52,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         <div className="text-right max-w-xs">
           <h3 className="text-[8px] font-bold uppercase tracking-widest opacity-60 mb-1">Billed To</h3>
           <div className="text-sm font-semibold">{data.client.name || '---'}</div>
-          <div className="text-[10px] opacity-75">{data.client.email}</div>
-          <div className="text-[10px] opacity-75 whitespace-pre-line">{data.client.address}</div>
+          <div className="text-[10px] opacity-75">{data.client.address}</div>
         </div>
       </div>
 
