@@ -31,11 +31,11 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         <div className="text-[10px] opacity-75 max-w-xl space-y-1">
           <p>{BUSINESS_DETAILS.address}</p>
           <p className="flex items-center justify-center gap-2">
-            <span>Phone/Whatsapp: {BUSINESS_DETAILS.phone}</span>
-            <span className="text-lg leading-none select-none font-bold">|</span>
-            <span>Email: {BUSINESS_DETAILS.email}</span>
-<span className="text-lg leading-none select-none font-bold">|</span>
-<span>Tiktok/IG: Thebeautyplush</span>
+            <span><span class="font-semibold">Phone/Whatsapp:</span> {BUSINESS_DETAILS.phone}</span>
+            
+            <span><span class="font-semibold">Email:</span> {BUSINESS_DETAILS.email}</span>
+
+<span><span class="font-semibold">Tiktok/IG:</span> Thebeautyplush</span>
           </p>
         </div>
       </div>
@@ -43,7 +43,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       {/* 2. Invoice Info (LEFT) and Billed To (RIGHT) */}
       <div className="flex justify-between items-start mb-8">
         <div className="text-left">
-          <h2 className="text-2xl font-headline italic text-secondary opacity-40 uppercase tracking-tighter mb-2">INVOICE</h2>
+          <h2 className="text-2xl font-headline italic text-secondary opacity-70 uppercase tracking-tighter mb-2">INVOICE</h2>
           <div className="space-y-1 text-[10px]">
             <p><span className="font-semibold uppercase text-[8px] tracking-widest opacity-60 mr-2">Invoice No:</span> {data.invoiceNumber || '---'}</p>
             <p><span className="font-semibold uppercase text-[8px] tracking-widest opacity-60 mr-2">Date:</span> {format(invoiceDate, 'MMM dd, yyyy')}</p>
@@ -65,7 +65,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
               <th className="py-2 px-4">Description</th>
               <th className="py-2 px-4 text-center">Qty</th>
               <th className="py-2 px-4 text-right">Unit Price</th>
-              <th className="py-2 px-4 text-right">Total</th>
+              <th className="py-2 px-4 text-right">Amount</th>
             </tr>
           </thead>
           <tbody className="text-[11px] divide-y divide-secondary/30">
