@@ -24,7 +24,7 @@ export const BUSINESS_DETAILS = {
   name: "The Beauty Plush",
   tagline: "Haven for Glam and Glow",
   address: "Ashaley Botwe, Accra, Greater Accra, Ghana",
-  phone: "02400879933",
+  phone: "0240093888",
   website: "www.thebeautyplush.com",
   email: "info@thebeautyplush.com",
   logoUrl: "/logo.png",
