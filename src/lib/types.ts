@@ -23,7 +23,7 @@ export interface InvoiceData {
 
 export const BUSINESS_DETAILS = {
   name: "The Beauty Plush",
-  tagline: "Professional beauty services and products",
+  tagline: "Haven for Glam and Glow",
   address: "Ashaley Botwe, Accra, Greater Accra, Ghana",
   phone: "02400879933",
   website: "www.thebeautyplush.com",

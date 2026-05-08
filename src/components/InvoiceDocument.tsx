@@ -31,8 +31,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         <div className="text-sm opacity-75 max-w-xl space-y-1">
           <p>{BUSINESS_DETAILS.address}</p>
           <p>
-            Phone/Whatsapp: {BUSINESS_DETAILS.phone} &nbsp;&nbsp; 
-            Website: {BUSINESS_DETAILS.website} &nbsp;&nbsp;
+            Phone/Whatsapp: {BUSINESS_DETAILS.phone} &nbsp;&nbsp; • &nbsp;&nbsp; 
             Email: {BUSINESS_DETAILS.email}
           </p>
         </div>
@@ -58,7 +57,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         </div>
       </div>
 
-      {/* 3. Line Items Table - ALWAYS HORIZONTAL */}
+      {/* 3. Line Items Table */}
       <div className="flex-grow">
         <table className="w-full text-left mb-8 border-collapse">
           <thead>
@@ -114,9 +113,9 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
           <p className="opacity-75 whitespace-pre-line">{data.notes || 'Please pay within 15 days of receiving this invoice. Thank you for your business!'}</p>
         </div>
         <div className="text-right text-[10px] uppercase tracking-widest opacity-50 flex flex-col justify-end">
-          <p>{BUSINESS_DETAILS.name}</p>
+          <p className="font-bold">{BUSINESS_DETAILS.name}</p>
+          <p className="italic">{BUSINESS_DETAILS.tagline}</p>
           <p>{BUSINESS_DETAILS.website}</p>
-          <p>© {new Date().getFullYear()} All Rights Reserved</p>
         </div>
       </div>
     </div>
