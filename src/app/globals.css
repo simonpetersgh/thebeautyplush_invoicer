@@ -39,13 +39,14 @@
 @media print {
   @page {
     margin: 0;
-    size: auto;
+    size: letter;
   }
   html, body {
     height: 100%;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden;
+    -webkit-print-color-adjust: exact;
   }
   .no-print {
     display: none !important;
@@ -57,7 +58,6 @@
     box-shadow: none !important;
     border: none !important;
     margin: 0 !important;
-    padding: 0.25in !important;
     width: 8.5in !important;
     height: 11in !important;
     overflow: hidden !important;
@@ -66,5 +66,7 @@
     box-sizing: border-box;
     display: flex !important;
     flex-direction: column !important;
+    position: relative !important;
+    background-color: white !important;
   }
 }
