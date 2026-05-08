@@ -31,9 +31,11 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
         <div className="text-[10px] opacity-75 max-w-xl space-y-1">
           <p>{BUSINESS_DETAILS.address}</p>
           <p className="flex items-center justify-center gap-2">
-            <span>Phone: {BUSINESS_DETAILS.phone}</span>
-            <span className="text-lg leading-none select-none font-bold">•</span>
+            <span>Phone/Whatsapp: {BUSINESS_DETAILS.phone}</span>
+            <span className="text-lg leading-none select-none font-bold">|</span>
             <span>Email: {BUSINESS_DETAILS.email}</span>
+<span className="text-lg leading-none select-none font-bold">|</span>
+<span>Tiktok/IG: Thebeautyplush</span>
           </p>
         </div>
       </div>
