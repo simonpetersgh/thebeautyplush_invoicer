@@ -46,7 +46,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-20 px-4 sm:px-0">
-      {/* SECTION 1: INVOICE DETAILS */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary">
           <CardTitle className="font-headline text-2xl text-primary">Invoice Information</CardTitle>
@@ -98,7 +97,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
         </CardContent>
       </Card>
 
-      {/* SECTION 2: LINE ITEMS */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary flex flex-row items-center justify-between">
           <CardTitle className="font-headline text-2xl text-primary">Line Items</CardTitle>
@@ -190,7 +188,6 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
         </CardContent>
       </Card>
 
-      {/* SECTION 3: CLIENT DETAILS */}
       <Card className="border-secondary shadow-sm">
         <CardHeader className="bg-[#F5F0E8]/50 border-b border-secondary">
           <CardTitle className="font-headline text-2xl text-primary">Client Details</CardTitle>
@@ -210,7 +207,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
               <Label htmlFor="clientAddress">Client Address</Label>
               <Input 
                 id="clientAddress"
-                placeholder="Full Address"
+                placeholder="Full Address (One line)"
                 value={data.client.address}
                 onChange={e => setData({...data, client: {...data.client, address: e.target.value}})}
               />

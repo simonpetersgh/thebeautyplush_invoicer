@@ -31,7 +31,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
           <p>{BUSINESS_DETAILS.address}</p>
           <p className="flex items-center justify-center gap-2">
             <span>Phone/Whatsapp: {BUSINESS_DETAILS.phone}</span>
-            <span className="text-lg leading-none select-none">•</span>
+            <span className="text-lg leading-none select-none font-bold">•</span>
             <span>Email: {BUSINESS_DETAILS.email}</span>
           </p>
         </div>
@@ -39,7 +39,6 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
 
       {/* 2. Invoice Info (LEFT) and Billed To (RIGHT) */}
       <div className="flex justify-between items-start mb-4">
-        {/* Invoice Info - LEFT ALIGNED */}
         <div className="text-left">
           <h2 className="text-lg font-headline italic text-secondary opacity-50 uppercase tracking-tighter mb-0.5">INVOICE</h2>
           <div className="space-y-0.5 text-[9px]">
@@ -48,11 +47,10 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
           </div>
         </div>
 
-        {/* Billed To - RIGHT ALIGNED */}
         <div className="text-right max-w-xs">
           <h3 className="text-[7px] font-bold uppercase tracking-widest opacity-60 mb-0.5">Billed To</h3>
           <div className="text-xs font-semibold">{data.client.name || '---'}</div>
-          <div className="text-[9px] opacity-75">{data.client.address}</div>
+          <div className="text-[9px] opacity-75 truncate">{data.client.address}</div>
         </div>
       </div>
 
@@ -76,11 +74,6 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
                 <td className="py-1 px-3 text-right font-semibold">₵ {(item.quantity * item.unitPrice).toFixed(2)}</td>
               </tr>
             ))}
-            {data.items.length === 0 && (
-              <tr>
-                <td colSpan={4} className="py-3 text-center opacity-40 italic">No items added yet.</td>
-              </tr>
-            )}
           </tbody>
         </table>
       </div>
