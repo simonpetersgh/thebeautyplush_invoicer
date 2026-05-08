@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -6,7 +5,7 @@ import { InvoiceData, BUSINESS_DETAILS } from "@/lib/types";
 import { InvoiceForm } from "@/components/InvoiceForm";
 import { InvoiceDocument } from "@/components/InvoiceDocument";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Printer, FileText, Sparkles } from "lucide-react";
+import { ArrowLeft, Printer, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 type AppState = "landing" | "form" | "preview";
@@ -99,7 +98,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Preview State */}
+      {/* Preview State - ACTUAL PDF VIEW (NOT RESPONSIVE) */}
       {state === "preview" && (
         <div className="py-12 bg-[#F5F0E8] min-h-screen">
           <div className="no-print max-w-4xl mx-auto px-4 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between animate-in fade-in slide-in-from-top-4 duration-500">
@@ -120,8 +119,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="animate-in zoom-in-95 duration-500 max-w-4xl mx-auto px-4 sm:px-0">
-            <InvoiceDocument data={invoiceData} />
+          {/* Scroll container for fixed-width document view on mobile */}
+          <div className="overflow-x-auto pb-12">
+            <div className="animate-in zoom-in-95 duration-500 w-fit mx-auto px-4">
+              <InvoiceDocument data={invoiceData} />
+            </div>
           </div>
 
           <div className="no-print text-center py-12 opacity-40 text-xs tracking-widest uppercase">

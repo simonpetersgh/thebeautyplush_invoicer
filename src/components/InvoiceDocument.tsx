@@ -1,4 +1,3 @@
-
 import { InvoiceData, BUSINESS_DETAILS } from "@/lib/types";
 import Image from "next/image";
 import { format } from "date-fns";
@@ -13,47 +12,41 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
   const grandTotal = subtotal + taxAmount;
 
   return (
-    <div className="invoice-document bg-white min-h-[11in] w-full max-w-4xl mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <div className="relative w-24 h-24 mb-3 grayscale">
-            <Image 
-              src={BUSINESS_DETAILS.logoUrl} 
-              alt={BUSINESS_DETAILS.name} 
-              fill 
-              className="object-contain"
-            />
-          </div>
-          <h1 className="text-3xl font-headline font-bold text-primary mb-1 uppercase tracking-wider">{BUSINESS_DETAILS.name}</h1>
-          <p className="text-sm opacity-75 max-w-xs">{BUSINESS_DETAILS.address}</p>
-          <p className="text-sm opacity-75">{BUSINESS_DETAILS.phone} • {BUSINESS_DETAILS.email}</p>
+    <div className="invoice-document bg-white min-h-[11in] w-[8.5in] mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden">
+      {/* Organization Details - CENTER ALIGNED */}
+      <div className="flex flex-col items-center text-center mb-16">
+        <div className="relative w-20 h-20 mb-4 grayscale">
+          <Image 
+            src={BUSINESS_DETAILS.logoUrl} 
+            alt={BUSINESS_DETAILS.name} 
+            fill 
+            className="object-contain"
+          />
         </div>
-        <div className="text-right w-full md:w-auto">
-          <h2 className="text-5xl font-headline italic text-secondary mb-4 opacity-50 uppercase tracking-tighter">INVOICE</h2>
-          <div className="space-y-1 text-sm">
-            <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60">Invoice No:</span> {data.invoiceNumber || '---'}</p>
-            <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60">Date:</span> {format(new Date(data.invoiceDate || new Date()), 'MMM dd, yyyy')}</p>
-          </div>
+        <h1 className="text-3xl font-headline font-bold text-primary mb-2 uppercase tracking-wider">{BUSINESS_DETAILS.name}</h1>
+        <div className="text-sm opacity-75 max-w-sm space-y-1">
+          <p>{BUSINESS_DETAILS.address}</p>
+          <p>{BUSINESS_DETAILS.phone} • {BUSINESS_DETAILS.email}</p>
         </div>
       </div>
 
-      {/* Client and Payment Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-        <div className="border-l-4 border-secondary pl-4">
-          <h3 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-3">Bill To:</h3>
+      {/* Invoice Info and Billed To - ALIGNED LEFT/RIGHT */}
+      <div className="flex justify-between items-start mb-16">
+        {/* Invoice Info - LEFT ALIGNED */}
+        <div className="space-y-4">
+          <h2 className="text-4xl font-headline italic text-secondary opacity-50 uppercase tracking-tighter mb-4">INVOICE</h2>
+          <div className="space-y-1 text-sm">
+            <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60 mr-2">Invoice No:</span> {data.invoiceNumber || '---'}</p>
+            <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60 mr-2">Date:</span> {format(new Date(data.invoiceDate || new Date()), 'MMM dd, yyyy')}</p>
+          </div>
+        </div>
+
+        {/* Bill To - RIGHT ALIGNED */}
+        <div className="text-right border-r-4 border-secondary pr-4">
+          <h3 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Bill To:</h3>
           <div className="text-lg font-semibold">{data.client.name || '---'}</div>
           <div className="text-sm opacity-75">{data.client.email}</div>
           <div className="text-sm opacity-75 whitespace-pre-line">{data.client.address}</div>
-        </div>
-        <div className="md:text-right flex flex-col justify-end">
-          <div className="bg-[#F5F0E8] p-6 inline-block ml-auto rounded-sm border border-secondary">
-            <h3 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Total Due:</h3>
-            <div className="text-4xl font-headline font-bold text-primary">
-              ${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </div>
-            <p className="text-xs mt-2 opacity-60">Due on receipt</p>
-          </div>
         </div>
       </div>
 
@@ -88,7 +81,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
 
       {/* Totals Block */}
       <div className="flex flex-col items-end gap-2 mb-12">
-        <div className="w-full md:w-64 space-y-2">
+        <div className="w-64 space-y-2">
           <div className="flex justify-between text-sm">
             <span className="opacity-60 font-semibold uppercase tracking-wider text-xs">Subtotal:</span>
             <span>${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
@@ -107,7 +100,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       </div>
 
       {/* Footer */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-secondary/30 mt-auto">
+      <div className="grid grid-cols-2 gap-12 pt-8 border-t border-secondary/30 mt-auto">
         <div className="text-xs">
           <h3 className="font-bold uppercase tracking-widest opacity-60 mb-2">Notes & Terms:</h3>
           <p className="opacity-75 whitespace-pre-line">{data.notes || 'Please pay within 15 days of receiving this invoice. Thank you for your business!'}</p>
