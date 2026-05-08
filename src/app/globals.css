@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 37 32% 95%; /* #F5F0E8 */
-    --foreground: 0 0% { 10% }; /* #1A1A1A */
+    --foreground: 0 0% 10%; /* #1A1A1A */
     --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
@@ -37,10 +37,15 @@
 }
 
 @media print {
+  @page {
+    margin: 0;
+    size: auto;
+  }
   body {
     background-color: white !important;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
   }
   .no-print {
     display: none !important;
@@ -52,7 +57,9 @@
     box-shadow: none !important;
     border: none !important;
     margin: 0 !important;
-    padding: 1cm !important;
+    padding: 0.5in !important;
     width: 100% !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
   }
 }
