@@ -41,7 +41,7 @@ export default function Home() {
       {/* Landing State */}
       {state === "landing" && (
         <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-700">
-          <div className="mb-8 relative w-32 h-32 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="mb-8 relative w-32 h-32 transition-all duration-500">
             <Image 
               src={BUSINESS_DETAILS.logoUrl} 
               alt="Invoice Forge" 
@@ -88,7 +88,7 @@ export default function Home() {
               <ArrowLeft className="mr-2 h-4 w-4" /> Exit to Home
             </Button>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 relative grayscale">
+              <div className="w-8 h-8 relative">
                 <Image src={BUSINESS_DETAILS.logoUrl} alt="Logo" fill className="object-contain" />
               </div>
               <span className="font-headline font-bold text-primary">{BUSINESS_DETAILS.name}</span>
