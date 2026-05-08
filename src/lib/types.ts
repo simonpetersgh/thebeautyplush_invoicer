@@ -22,11 +22,10 @@ export interface InvoiceData {
 }
 
 export const BUSINESS_DETAILS = {
-  name: "Invoice Forge",
-  tagline: "Generate professional invoices instantly",
-  address: "123 Creative Lane, Design District, NY 10001",
-  phone: "(555) 000-1111",
-  email: "hello@invoiceforge.com",
-  website: "www.invoiceforge.com",
-  logoUrl: "/logo.png", // Provision for logo in public folder
+  name: "The Beauty Plush",
+  tagline: "Professional beauty services and products",
+  address: "Accra, Ghana",
+  phone: "02400879933",
+  website: "www.thebeautyplush.com",
+  logoUrl: "/logo.png",
 };

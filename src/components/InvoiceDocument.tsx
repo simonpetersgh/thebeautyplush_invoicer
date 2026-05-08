@@ -28,9 +28,9 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
           />
         </div>
         <h1 className="text-3xl font-headline font-bold text-primary mb-2 uppercase tracking-wider">{BUSINESS_DETAILS.name}</h1>
-        <div className="text-sm opacity-75 max-w-sm space-y-1">
+        <div className="text-sm opacity-75 max-w-xl space-y-1">
           <p>{BUSINESS_DETAILS.address}</p>
-          <p>{BUSINESS_DETAILS.phone} • {BUSINESS_DETAILS.email}</p>
+          <p>Phone/Whatsapp: {BUSINESS_DETAILS.phone} &nbsp;&nbsp; Website: {BUSINESS_DETAILS.website}</p>
         </div>
       </div>
 
