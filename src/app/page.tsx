@@ -88,6 +88,10 @@ export default function Home() {
               <p className="text-sm">A distraction-free experience focused on getting you paid.</p>
             </div>
           </div>
+
+          <div className="mt-12 py-8 opacity-40 text-xs tracking-widest uppercase">
+            Designed by <a href="http://www.simonpetersgh.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary transition-colors">Simon Peters</a>
+          </div>
         </div>
       )}
 
@@ -140,7 +144,7 @@ export default function Home() {
           </div>
 
           <div className="no-print text-center py-12 opacity-40 text-xs tracking-widest uppercase">
-            Designed with care by {BUSINESS_DETAILS.name}
+            Designed by <a href="http://www.simonpetersgh.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary transition-colors">Simon Peters</a>
           </div>
         </div>
       )}
