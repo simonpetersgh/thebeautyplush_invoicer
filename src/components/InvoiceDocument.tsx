@@ -11,6 +11,9 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
   const taxAmount = (subtotal * (data.taxRate || 0)) / 100;
   const grandTotal = subtotal + taxAmount;
 
+  // Ensure date is valid
+  const invoiceDate = data.invoiceDate ? new Date(data.invoiceDate) : new Date();
+
   return (
     <div className="invoice-document bg-white min-h-[11in] w-[8.5in] mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden">
       {/* Organization Details - CENTER ALIGNED */}
@@ -37,7 +40,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
           <h2 className="text-4xl font-headline italic text-secondary opacity-50 uppercase tracking-tighter mb-4">INVOICE</h2>
           <div className="space-y-1 text-sm">
             <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60 mr-2">Invoice No:</span> {data.invoiceNumber || '---'}</p>
-            <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60 mr-2">Date:</span> {format(new Date(data.invoiceDate || new Date()), 'MMM dd, yyyy')}</p>
+            <p><span className="font-semibold uppercase text-xs tracking-widest opacity-60 mr-2">Date:</span> {format(invoiceDate, 'MMM dd, yyyy')}</p>
           </div>
         </div>
 

@@ -146,21 +146,22 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
         </CardHeader>
         <CardContent className="pt-6">
           <div className="space-y-4">
-            {/* Table Header - Hidden on Mobile */}
-            <div className="hidden md:grid md:grid-cols-[1fr_80px_120px_120px_40px] gap-4 pb-3 border-b border-secondary text-xs uppercase tracking-widest font-bold opacity-60 px-2">
+            {/* Table Header - Desktop Only */}
+            <div className="hidden md:grid md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 pb-3 border-b border-secondary text-xs uppercase tracking-widest font-bold opacity-60 px-2">
               <div>Description</div>
-              <div className="text-center">Qty</div>
+              <div className="text-center">Quantity</div>
               <div className="text-right">Unit Price</div>
               <div className="text-right">Total</div>
               <div></div>
             </div>
 
-            {/* Item Rows - Vertical Stack on Mobile, Horizontal on Desktop */}
+            {/* Item Rows - Vertical on Mobile, Horizontal on Desktop */}
             <div className="divide-y divide-secondary/30">
               {data.items.map((item) => (
-                <div key={item.id} className="py-4 md:py-3 grid grid-cols-1 md:grid-cols-[1fr_80px_120px_120px_40px] gap-4 items-center group px-2">
-                  <div className="space-y-1 md:space-y-0">
-                    <Label className="md:hidden text-[10px] uppercase opacity-50">Description</Label>
+                <div key={item.id} className="py-6 md:py-3 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_40px] gap-4 items-end md:items-center group px-2">
+                  {/* Description */}
+                  <div className="space-y-2 md:space-y-0">
+                    <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Description</Label>
                     <Input 
                       placeholder="Item description"
                       value={item.description}
@@ -168,46 +169,45 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
                       className="border-secondary md:border-none focus-visible:ring-1 focus-visible:ring-primary shadow-none bg-transparent"
                     />
                   </div>
-                  <div className="grid grid-cols-2 md:block gap-4">
-                    <div className="space-y-1 md:space-y-0">
-                      <Label className="md:hidden text-[10px] uppercase opacity-50">Qty</Label>
+
+                  {/* Quantity */}
+                  <div className="space-y-2 md:space-y-0">
+                    <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Quantity</Label>
+                    <Input 
+                      type="number"
+                      min="1"
+                      value={item.quantity}
+                      onChange={e => updateItem(item.id, 'quantity', parseInt(e.target.value) || 0)}
+                      className="text-left md:text-center border-secondary md:border-none focus-visible:ring-1 shadow-none bg-transparent"
+                    />
+                  </div>
+
+                  {/* Unit Price */}
+                  <div className="space-y-2 md:space-y-0">
+                    <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Unit Price</Label>
+                    <div className="relative">
+                      <span className="absolute left-3 md:left-2 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
                       <Input 
-                        type="number"
-                        min="1"
-                        value={item.quantity}
-                        onChange={e => updateItem(item.id, 'quantity', parseInt(e.target.value) || 0)}
-                        className="text-center border-secondary md:border-none focus-visible:ring-1 shadow-none bg-transparent"
-                      />
-                    </div>
-                    <div className="space-y-1 md:space-y-0 md:hidden">
-                       <Label className="md:hidden text-[10px] uppercase opacity-50">Unit Price</Label>
-                       <Input 
                         type="number"
                         min="0"
                         step="0.01"
                         value={item.unitPrice}
                         onChange={e => updateItem(item.id, 'unitPrice', parseFloat(e.target.value) || 0)}
-                        className="text-right border-secondary md:border-none focus-visible:ring-1 shadow-none bg-transparent"
+                        className="pl-7 md:pl-6 text-left md:text-right border-secondary md:border-none focus-visible:ring-1 shadow-none bg-transparent"
                       />
                     </div>
                   </div>
-                  <div className="hidden md:block">
-                    <Input 
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={item.unitPrice}
-                      onChange={e => updateItem(item.id, 'unitPrice', parseFloat(e.target.value) || 0)}
-                      className="text-right border-secondary md:border-none focus-visible:ring-1 shadow-none bg-transparent"
-                    />
-                  </div>
-                  <div className="flex justify-between md:block items-center">
-                    <Label className="md:hidden text-[10px] uppercase opacity-50">Total</Label>
-                    <div className="text-right font-medium">
+
+                  {/* Row Total */}
+                  <div className="flex justify-between md:block items-center pt-2 md:pt-0">
+                    <Label className="md:hidden text-[10px] uppercase font-bold opacity-60">Total</Label>
+                    <div className="text-right font-semibold">
                       ${(item.quantity * item.unitPrice).toFixed(2)}
                     </div>
                   </div>
-                  <div className="flex justify-end">
+
+                  {/* Remove Button */}
+                  <div className="flex justify-end pt-2 md:pt-0">
                     <Button 
                       variant="ghost" 
                       size="icon" 
@@ -227,19 +227,20 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
             </div>
           </div>
 
+          {/* Totals Summary */}
           <div className="mt-8 flex flex-col items-end border-t border-secondary pt-6 space-y-2">
-            <div className="flex justify-between w-full md:w-64 text-sm px-2">
-              <span className="opacity-60">Subtotal:</span>
+            <div className="flex justify-between w-full md:w-72 text-sm px-2">
+              <span className="opacity-60 uppercase tracking-widest text-xs font-bold">Subtotal:</span>
               <span>${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
             {data.taxRate > 0 && (
-              <div className="flex justify-between w-full md:w-64 text-sm px-2">
-                <span className="opacity-60">Tax ({data.taxRate}%):</span>
+              <div className="flex justify-between w-full md:w-72 text-sm px-2">
+                <span className="opacity-60 uppercase tracking-widest text-xs font-bold">Tax ({data.taxRate}%):</span>
                 <span>${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
               </div>
             )}
-            <div className="flex justify-between w-full md:w-64 text-lg font-bold text-primary pt-2 px-2">
-              <span>Grand Total:</span>
+            <div className="flex justify-between w-full md:w-72 text-lg font-bold text-primary pt-2 px-2 border-t border-secondary mt-2">
+              <span className="uppercase tracking-widest">Grand Total:</span>
               <span>${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
           </div>
