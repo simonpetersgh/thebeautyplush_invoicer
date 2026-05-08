@@ -115,7 +115,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       <div className="pt-3 border-t border-secondary/30 mt-2">
         <div className="flex justify-between items-end">
           <div className="text-[9px]">
-            <p className="font-bold text-primary mb-0.5">{BUSINESS_DETAILS.tagline}</p>
+            <p className="font-bold text-primary mb-0.5 italic">{BUSINESS_DETAILS.tagline}</p>
           </div>
           <div className="text-right text-[9px] uppercase tracking-widest opacity-50">
             <p className="font-bold">{BUSINESS_DETAILS.name}</p>
