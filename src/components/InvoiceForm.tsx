@@ -207,7 +207,7 @@ export function InvoiceForm({ initialData, onPreview }: InvoiceFormProps) {
               <Label htmlFor="clientAddress">Client Address</Label>
               <Input 
                 id="clientAddress"
-                placeholder="Full Address (One line)"
+                placeholder="Full Address"
                 value={data.client.address}
                 onChange={e => setData({...data, client: {...data.client, address: e.target.value}})}
               />

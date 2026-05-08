@@ -26,5 +26,5 @@ export const BUSINESS_DETAILS = {
   phone: "02400879933",
   website: "www.thebeautyplush.com",
   email: "info@thebeautyplush.com",
-  logoUrl: "https://picsum.photos/seed/beauty/200/200",
+  logoUrl: "/logo.png",
 };

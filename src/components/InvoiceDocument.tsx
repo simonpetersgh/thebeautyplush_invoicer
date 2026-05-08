@@ -109,8 +109,8 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
       {/* 6. Footer - Flows directly below Notes */}
       <div className="pt-2 border-t border-secondary/30 mt-1">
         <div className="flex justify-between items-end">
-          <div className="text-[8px]">
-            <p className="font-bold text-primary mb-0.5 italic">{BUSINESS_DETAILS.tagline}</p>
+          <div className="text-[8px] italic opacity-60 font-medium">
+            <p>{BUSINESS_DETAILS.tagline}</p>
           </div>
           <div className="text-right text-[8px] uppercase tracking-widest opacity-50">
             <p className="font-bold">{BUSINESS_DETAILS.name}</p>
