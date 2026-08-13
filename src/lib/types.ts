@@ -1,4 +1,3 @@
-
 export interface LineItem {
   id: string;
   description: string;
@@ -16,6 +15,7 @@ export interface InvoiceData {
   invoiceDate: string;
   client: ClientDetails;
   items: LineItem[];
+  discount: number;
   taxRate: number;
   notes: string;
 }
