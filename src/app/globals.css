@@ -37,6 +37,7 @@
   }
 }
 
+
 @media print {
   @page {
     margin: 0;
@@ -71,3 +72,35 @@
     background-color: white !important;
   }
 }
+
+/* NEW: FOR SAFARI FIX */
+/* Invoice PDF / Print Layout */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  .invoice-document {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 12mm !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+
