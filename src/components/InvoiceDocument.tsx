@@ -22,7 +22,7 @@ export function InvoiceDocument({ data }: InvoiceDocumentProps) {
     : new Date();
 
   return (
-    <div className="invoice-document bg-white h-[11in] w-[8.5in] mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden box-border">
+    <div className="invoice-document bg-white w-[210mm] min-h-[297mm] mx-auto p-12 shadow-sm border border-secondary text-[#1A1A1A] flex flex-col overflow-hidden box-border">
       {/* 1. Organization Details */}
       <div className="flex flex-col items-center text-center mb-8">
         <div className="relative w-32 h-32 mb-0">
