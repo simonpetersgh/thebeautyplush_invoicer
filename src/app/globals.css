@@ -74,6 +74,7 @@
 }
 
 /* NEW: FOR SAFARI FIX */
+/* Invoice PDF / Print Layout */
 @page {
   size: A4;
   margin: 0;
