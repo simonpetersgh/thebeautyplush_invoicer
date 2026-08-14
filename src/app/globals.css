@@ -37,7 +37,7 @@
   }
 }
 
-/*
+
 @media print {
   @page {
     margin: 0;
@@ -71,7 +71,7 @@
     position: relative !important;
     background-color: white !important;
   }
-} */
+}
 
 /* NEW: FOR SAFARI FIX */
 @page {
